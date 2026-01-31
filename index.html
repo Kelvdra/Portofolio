@@ -2,598 +2,82 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portofolio Saya</title>
-  <style>
-    :root {
-      --bg: #f5f7fa;
-      --text: #1f2937;
-      --subtext: #4b5563;
-      --sidebar: #1f2937;
-      --link-hover: #374151;
-      --accent: #60a5fa;
-      --status-bg: #e5e7eb;
-    }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portofolio Hydra</title>
 
-    body.dark-mode {
-      --bg: #0f172a;
-      --text: #f1f5f9;
-      --subtext: #94a3b8;
-      --sidebar: #1e293b;
-      --link-hover: #334155;
-      --accent: #3b82f6;
-      --status-bg: #334155;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      background: var(--bg);
-      color: var(--text);
-      transition: background 0.3s, color 0.3s;
-    }
-    
-    .contact-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.2rem;
-  border-radius: 12px;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  background: var(--accent);
-  background-image: var(--icon);
-  background-repeat: no-repeat;
-  background-position: 10px center;
-  background-size: 24px 24px;
-  padding-left: 44px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease, box-shadow 0.3s;
-}
-
-   .contact-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-}
-
-
-    .sidebar-toggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    .hamburger {
-      width: 30px;
-      height: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .hamburger span {
-      height: 4px;
-      background: var(--text);
-      border-radius: 4px;
-      transition: all 0.3s ease;
-    }
-
-    .hamburger.open span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.open span:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.open span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
-
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: -260px;
-      width: 250px;
-      height: 100%;
-      background-color: var(--sidebar);
-      color: white;
-      padding: 2rem 1rem;
-      transition: left 0.3s ease;
-      z-index: 1000;
-    }
-
-    .sidebar.active {
-      left: 0;
-    }
-
-    .sidebar h2 {
-      text-align: center;
-      margin-bottom: 2rem;
-      color: var(--accent);
-    }
-
-    .sidebar a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      margin: 1rem 0;
-      padding: 0.5rem;
-      border-radius: 8px;
-      transition: background 0.3s;
-    }
-
-    .sidebar a:hover {
-      background-color: var(--link-hover);
-    }
-
-    .content {
-      padding: 3rem 2rem 2rem 2rem;
-    }
-
-    .content section {
-      display: none;
-    }
-
-    .content section.active {
-      display: block;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .welcome {
-      text-align: center;
-      margin-top: 3rem;
-    }
-
-    .welcome img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      margin-bottom: 1rem;
-    }
-
-    .welcome h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .welcome p {
-      font-size: 1.2rem;
-      color: var(--subtext);
-    }
-
-    .status-bar {
-      position: fixed;
-      top: 10px;
-      right: 70px;
-      background: transparent;
-      padding: 0.5rem 1rem;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: 0.9rem;
-      color: var(--text);
-      transition: background 0.3s;
-    }
-
-    .mode-toggle img {
-      transition: filter 0.3s ease;
-    }
-
-    .mode-toggle {
-      position: fixed;
-      top: 1px;
-      right: 20px;
-      z-index: 1001;
-      background: transparent;
-      color: var(--text);
-      border: none;
-      padding: 8px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s, color 0.3s;
-    }
-    
-/* Efek Salju */
-.snowflakes {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1; /* DI BELAKANG ELEMEN */
-  overflow: hidden;
-}
-
-.snowflakes span {
-  position: absolute;
-  top: -10px;
-  width: 10px;
-  height: 10px;
-  background-color: #fff;
-  opacity: 0.8;
-  border-radius: 50%;
-  animation: snow linear infinite;
-}
-
-@keyframes snow {
-  0% {
-    transform: translateY(0) translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) translateX(20px);
-    opacity: 0;
-  }
-}
-
-    /* Tentang Saya Tambahan */
-    .about-card {
-      background: var(--status-bg);
-      padding: 1.5rem;
-      margin-top: 1.5rem;
-      border-radius: 12px;
-    }
-
-    .about-card h2 {
-      margin-bottom: 1rem;
-    }
-
-    .skill {
-      margin-bottom: 1rem;
-    }
-
-    .skill span {
-      display: block;
-      margin-bottom: 0.3rem;
-      font-weight: bold;
-    }
-
-    .progress {
-      width: 100%;
-      background: #ccc;
-      height: 12px;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .bar {
-      height: 100%;
-      width: 0%;
-      background: var(--accent);
-      animation: fillBar 2s forwards;
-    }
-
-    .bar.html { width: 30%; }
-    .bar.css { width: 10%; }
-    .bar.js { width: 90%; }
-  
-    .music-button {
-  margin-top: 1rem;
-  padding: 10px 20px;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  background: var(--accent);
-  color: white;
-  font-weight: bold;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: background 0.3s ease;
-}
-
-.music-button:hover {
-  background: #fa6b3e;
-}
-
-#music-icon {
-  display: inline-block;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.3); }
-}
-
-    
-    .fade-in {
-  animation: fadeInMove 1s ease forwards;
-}
-.fade-in-delay {
-  opacity: 0;
-  animation: fadeInMove 1s 0.5s ease forwards;
-}
-.fade-in-delay2 {
-  opacity: 0;
-  animation: fadeInMove 1s 1s ease forwards;
-}
-
-@keyframes fadeInMove {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-
-    @keyframes fillBar {
-      from { width: 0%; }
-      to { }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- Salju Background -->
+
+<!-- Background salju -->
 <div class="snowflakes" aria-hidden="true"></div>
 
-<script>
-  // Generate salju otomatis
-  const snowflakesContainer = document.querySelector('.snowflakes');
+<button class="sidebar-toggle" onclick="toggleSidebar()">
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</button>
 
-  for (let i = 0; i < 50; i++) {
-    const snowflake = document.createElement('span');
-    const size = Math.random() * 5 + 5; // 5px - 10px
-    const left = Math.random() * 100; // posisi horizontal
-    const delay = Math.random() * 10; // animasi delay
-    const duration = Math.random() * 10 + 5; // animasi durasi 5-15s
+<button class="mode-toggle" onclick="toggleMode()">
+  <img id="mode-icon" width="24">
+</button>
 
-    snowflake.style.width = `${size}px`;
-    snowflake.style.height = `${size}px`;
-    snowflake.style.left = `${left}%`;
-    snowflake.style.animationDelay = `${delay}s`;
-    snowflake.style.animationDuration = `${duration}s`;
-
-    snowflakesContainer.appendChild(snowflake);
-  }
-</script>
-  <button class="sidebar-toggle" onclick="toggleSidebar()">
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </button>
-
-  <button class="mode-toggle" onclick="toggleMode()" title="Ganti Mode">
-    <img id="mode-icon" src="https://cdn-icons-png.flaticon.com/512/4814/4814730.png" alt="Mode Icon" width="24" />
-  </button>
-
-<div class="sidebar" id="sidebar">
+<aside class="sidebar" id="sidebar">
   <h2>Portofolio</h2>
-  <a href="home" onclick="navigateTo(event, 'home')">Beranda</a>
-  <a href="about" onclick="navigateTo(event, 'about')">Tentang Saya</a>
-  <a href="contact" onclick="navigateTo(event, 'contact')">Kontak</a>
+  <a href="home" onclick="navigateTo(event,'home')">Beranda</a>
+  <a href="about" onclick="navigateTo(event,'about')">Tentang</a>
+  <a href="contact" onclick="navigateTo(event,'contact')">Kontak</a>
+</aside>
+
+<div class="status-bar">
+  <span id="battery-level">Baterai: --%</span>
+  <span id="time">Waktu: --:--</span>
 </div>
 
-  <div class="status-bar">
-    <span id="battery-level">Baterai: --%</span>
-    <span id="time">Waktu: --:-- WIB</span>
-  </div>
+<main class="content">
 
-  <main class="content">
+<!-- DASHBOARD / HOME -->
 <section id="home" class="active">
   <div class="welcome">
-    <img src="https://files.catbox.moe/wh6fiv.jpg" alt="Foto Profil" class="fade-in" />
-    <h1 class="fade-in-delay">Halo, Saya Hydra</h1>
-    <p id="typed-text" class="fade-in-delay2"></p>
+    <img src="https://files.catbox.moe/wh6fiv.jpg">
+    <h1>Halo, Saya Hydra</h1>
+    <p id="typed-text"></p>
 
-    <div style="margin-top: 2rem;">
-      <audio id="bg-music" src="https://files.catbox.moe/mczld0.mp3" loop></audio>
-      <button onclick="toggleMusic()" id="music-btn" class="music-button">
-  <span id="music-icon">▶️</span> Hentikan Musik
-</button>
+    <!-- STATISTIK -->
+    <div class="stats">
+      <div class="stat-card">
+        <h2 id="visitor-count">0</h2>
+        <p>Pengunjung</p>
+      </div>
+      <div class="stat-card">
+        <h2 id="online-time">0m</h2>
+        <p>Waktu Online</p>
+      </div>
+      <div class="stat-card">
+        <h2>24/7</h2>
+        <p>Status</p>
+      </div>
     </div>
+
+    <audio id="bg-music" src="https://files.catbox.moe/mczld0.mp3" loop></audio>
+    <button class="music-button" onclick="toggleMusic()">
+      <span id="music-icon">▶️</span> Musik
+    </button>
   </div>
 </section>
 
-    <section id="about">
-      <h1>Tentang Saya</h1>
-      <p>Saya adalah seorang siswa smk berjurusan akuntansi yang bersemangat dalam dunia pengembangan web, dengan keahlian di HTML, CSS, dan JavaScript. Saya suka menciptakan sesuatu yang menarik, efisien, dan berguna.</p>
-
-      <div class="about-card">
-        <h2>Hobi & Ketertarikan</h2>
-        <ul>
-          <li>Membuat website interaktif</li>
-          <li>Belajar JavaScript Bot WhatsApp</li>
-          <li>Bermain game dan menonton anime</li>
-        </ul>
-      </div>
-
-      <div class="about-card">
-        <h2>Kemampuan Saya</h2>
-        <div class="skill">
-          <span>HTML</span>
-          <div class="progress"><div class="bar html"></div></div>
-        </div>
-        <div class="skill">
-          <span>CSS</span>
-          <div class="progress"><div class="bar css"></div></div>
-        </div>
-        <div class="skill">
-          <span>JavaScript</span>
-          <div class="progress"><div class="bar js"></div></div>
-        </div>
-      </div>
-    </section>
+<section id="about">
+  <h1>Tentang Saya</h1>
+  <p>Siswa SMK Akuntansi yang suka web & bot WhatsApp.</p>
+</section>
 
 <section id="contact">
-  <h1>Hubungi Saya</h1>
-  <p>Jangan ragu untuk menghubungi saya melalui platform berikut:</p>
-
-  <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem;">
-    <a href="https://wa.me/6285173228399" target="_blank" class="contact-btn" style="--icon: url('https://cdn-icons-png.flaticon.com/512/733/733585.png')">
-      WhatsApp
-    </a>
-    <a href="mailto:skyzoo604@email.com" class="contact-btn" style="--icon: url('https://cdn-icons-png.flaticon.com/512/732/732200.png')">
-      Email
-    </a>
-    <a href="https://instagram.com/boyxiaoo" target="_blank" class="contact-btn" style="--icon: url('https://cdn-icons-png.flaticon.com/512/2111/2111463.png')">
-      Instagram
-    </a>
-    <a href="https://t.me/draa82" target="_blank" class="contact-btn" style="--icon: url('https://cdn-icons-png.flaticon.com/512/2111/2111646.png')">
-      Telegram
-    </a>
-  </div>
+  <h1>Kontak</h1>
+  <a class="contact-btn" href="https://wa.me/6285173228399">WhatsApp</a>
 </section>
-  </main>
 
-  <script>
-    function updateModeIcon() {
-      const icon = document.getElementById('mode-icon');
-      if (document.body.classList.contains('dark-mode')) {
-        icon.src = 'https://files.catbox.moe/otr78j.png';
-      } else {
-        icon.src = 'https://files.catbox.moe/yqnixc.png';
-      }
-    }
+</main>
 
-    function toggleMode() {
-      document.body.classList.toggle('dark-mode');
-      localStorage.setItem('mode', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-      updateModeIcon();
-    }
-
-    const sidebar = document.getElementById('sidebar');
-    const hamburger = document.getElementById('hamburger');
-
-    function toggleSidebar() {
-      sidebar.classList.toggle('active');
-      hamburger.classList.toggle('open');
-    }
-
-    // Fungsi untuk menampilkan section sesuai ID
-function showSection(id) {
-  document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
-  const target = document.getElementById(id);
-  if (target) target.classList.add('active');
-}
-
-// Fungsi untuk navigasi + update URL
-function navigateTo(event, sectionId) {
-  event.preventDefault();
-  history.pushState({}, '', sectionId);
-  showSection(sectionId);
-}
-
-// Saat halaman pertama dimuat
-window.addEventListener('DOMContentLoaded', () => {
-  let path = window.location.pathname.split('/').pop();
-  if (!path || path === 'index.html') {
-    path = 'home'; // default ke home
-    history.replaceState({}, '', 'home'); // ganti URL tanpa reload
-  }
-  showSection(path);
-});
-
-// Navigasi back/forward browser
-window.addEventListener('popstate', () => {
-  const path = window.location.pathname.split('/').pop() || 'home';
-  showSection(path);
-});
-
-    function updateTime() {
-      const now = new Date();
-      const timeString = now.toLocaleTimeString('id-ID', { timeZone: 'Asia/Jakarta' });
-      document.getElementById('time').textContent = 'Waktu: ' + timeString + ' WIB';
-    }
-
-    function updateBattery() {
-      if (navigator.getBattery) {
-        navigator.getBattery().then(battery => {
-          const level = Math.round(battery.level * 100);
-          document.getElementById('battery-level').textContent = 'Baterai: ' + level + '%';
-        });
-      } else {
-        document.getElementById('battery-level').textContent = 'Baterai: Tidak didukung';
-      }
-    }
-
-    if (localStorage.getItem('mode') === 'dark') {
-      document.body.classList.add('dark-mode');
-    }
-    
-    // Teks ketik otomatis
-const text = "Selamat datang di website pribadi saya. Di sini kamu bisa mengenal saya lebih jauh!";
-let index = 0;
-function typeText() {
-  const el = document.getElementById("typed-text");
-  if (index < text.length) {
-    el.textContent += text.charAt(index);
-    index++;
-    setTimeout(typeText, 40);
-  }
-}
-typeText();
-
-// Musik kontrol
-let isPlaying = false;
-function toggleMusic() {
-  const music = document.getElementById('bg-music');
-  const btn = document.getElementById('music-btn');
-  if (isPlaying) {
-    music.pause();
-    btn.textContent = 'Mainkan Musik';
-  } else {
-    music.play();
-    btn.textContent = 'Hentikan Musik';
-  }
-  isPlaying = !isPlaying;
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  const music = document.getElementById('bg-music');
-  music.volume = 0.5;
-  music.play().catch(() => {
-    // Autoplay kadang diblokir, bisa diaktifkan manual oleh user
-    console.warn("Autoplay diblokir oleh browser");
-  });
-  isPlaying = true;
-  updateMusicButton();
-});
-
-function updateMusicButton() {
-  const btn = document.getElementById('music-btn');
-  const icon = document.getElementById('music-icon');
-  if (isPlaying) {
-    btn.innerHTML = '<span id="music-icon">⏸️</span> Hentikan Musik';
-  } else {
-    btn.innerHTML = '<span id="music-icon">▶️</span> Mainkan Musik';
-  }
-}
-
-function toggleMusic() {
-  const music = document.getElementById('bg-music');
-  if (isPlaying) {
-    music.pause();
-  } else {
-    music.play();
-  }
-  isPlaying = !isPlaying;
-  updateMusicButton();
-}
-
-
-    setInterval(updateTime, 1000);
-    updateTime();
-    updateBattery();
-    updateModeIcon();
-  </script>
+<script src="script.js"></script>
 </body>
 </html>
